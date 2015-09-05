@@ -22,7 +22,20 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### example
+```
+$ engawa_eater start
+  eat only '炙りえんがわ'（e:eat, p:pass）
+  えんがわ
+  p
+  炙りサーモン
+  p
+  炙りエンガワ
+  e
+  ...
+```
+Aim a perfect score!
+
 
 ## Development
 
