@@ -1,3 +1,4 @@
 #!/usr/bin/env ruby
-
 require "engawa_eater"
+
+EngawaEater::CLI.start
