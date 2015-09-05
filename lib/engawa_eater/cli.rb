@@ -4,7 +4,7 @@ require "timeout"
 
 module EngawaEater
   class CLI < Thor
-    desc "start", "play the eat a lot engawa game."
+    desc "start", "Game of eat only '炙りえんがわ'."
     def start
       puts "eat only '炙りえんがわ'（e:eat, p:pass）"
       sushis = ["炙りえんがわ", "えんがわ", "炙りサーモン"]
