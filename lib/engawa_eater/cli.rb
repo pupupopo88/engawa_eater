@@ -1,5 +1,6 @@
 require "engawa_eater"
 require "thor"
+require "timeout"
 
 module EngawaEater
   class CLI < Thor
@@ -11,7 +12,13 @@ module EngawaEater
       10.times do
         gave_sushi = sushis.sample
         puts gave_sushi
-        action = STDIN.gets.chomp!
+        action = ""
+        begin
+          timeout(1.2) {
+            action = STDIN.gets.chomp!
+          }
+        rescue
+        end
         if gave_sushi == "炙りえんがわ"
           score += 1 if action == "e"
         else
