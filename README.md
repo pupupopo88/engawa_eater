@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ### example
 ```
-$ engawa_eater start
+$ engawa_eater only
   eat only '炙りえんがわ'（e:eat, p:pass）
   えんがわ
   p
