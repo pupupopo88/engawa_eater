@@ -27,5 +27,42 @@ module EngawaEater
       end
       puts "炙りえんがわ #{score * 10}%！"
     end
+
+    desc "many", "Game of continue to eat 'えんがわ' and '炙りえんがわ'."
+    def many
+      puts "continue to eat '炙りえんがわ' and 'えんがわ'（e:eat, p:pass）"
+      sushis = ["炙りえんがわ", "えんがわ", "芽ねぎ", "炙りほたて", "マグロ", "サーモン"]
+      stomach_status = 0
+      score = 0
+      sec = 30
+      begin
+        timeout(sec) {
+          while stomach_status <= 20
+            gave_sushi = sushis.sample
+            puts "#{gave_sushi}（SCORE:#{score}, STOMACH:#{stomach_status}）"
+            action = STDIN.gets.chomp!
+            case gave_sushi
+            when "炙りえんがわ"
+              if action == "e"
+                score += 3
+                stomach_status += 4
+              end
+            when "えんがわ"
+              if action == "e"
+                score += 1
+                stomach_status += 2
+              end
+            when "芽ねぎ"
+              stomach_status -= 4 if action == "e"
+            else
+              stomach_status += 2 if action == "e"
+            end
+          end
+          puts "can’t eat anymore!（SCORE:#{score}, STOMACH:#{stomach_status}）"
+        }
+      rescue
+        puts "Time's UP!（SCORE:#{score}, STOMACH:#{stomach_status}）"
+      end
+    end
   end
 end
