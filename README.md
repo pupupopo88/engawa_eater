@@ -1,8 +1,6 @@
 # EngawaEater
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/engawa_eater`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+When you want to eat '炙りえんがわ' , you can get a sense of satisfaction when you play this game.
 
 ## Installation
 
