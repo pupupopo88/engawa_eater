@@ -34,6 +34,21 @@ $ engawa_eater only
 ```
 Aim a perfect score!
 
+```
+$ engawa_eater many
+  Game of continue to eat 'えんがわ' and '炙りえんがわ'.
+  炙りえんがわ（SCORE:0, STOMACH:0）
+  e
+  サーモン（SCORE:3, STOMACH:4）
+  p
+  えんがわ（SCORE:3, STOMACH:4）
+  e
+  芽ねぎ（SCORE:4, STOMACH:6）
+  e
+  えんがわ（SCORE:4, STOMACH:6）
+  ...
+```
+Aim high score!
 
 ## Development
 
