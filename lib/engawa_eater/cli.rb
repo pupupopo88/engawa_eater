@@ -5,34 +5,47 @@ module EngawaEater
   class CLI < Thor
     desc "only", "Game of eat only '炙りえんがわ'."
     def only
+      only_start_mesasge
+      STDIN.gets
+      all_sushi = %w[炙りえんがわ えんがわ 炙りサーモン] # NOTE: 寿司は不可算名詞
+      puts "炙りえんがわ #{run(all_sushi) * 10}%！"
+    end
+
+    private
+
+    def only_start_mesasge
       puts <<-EOS
 ----------------------------------------
 eat only '炙りえんがわ'（e:eat, p:pass）
 ----------------------------------------
 Start: Press Enter
       EOS
-      STDIN.gets
-      sushis = ["炙りえんがわ", "えんがわ", "炙りサーモン"]
-      score = 0
-      10.times do
-        gave_sushi = sushis.sample
-        puts gave_sushi
-        action = ""
-        begin
-          timeout(1.2) {
-            action = STDIN.gets.chomp!
-          }
-        rescue
-        end
-        if gave_sushi == "炙りえんがわ"
-          score += 1 if action == "e"
-        else
-          score += 1 if action == "p"
-        end
-      end
-      puts "炙りえんがわ #{score * 10}%！"
     end
 
+    def questions(all_sushi)
+      Array.new(10).map { all_sushi.sample }
+    end
+
+    def run(all_sushi)
+      questions(all_sushi).map do |sushi|
+        puts sushi
+        begin
+          timeout(1.2) do
+            case STDIN.gets.chomp!
+            when 'e' then 1 if sushi == '炙りえんがわ' # TODO: マジックナンバーやめる
+            when 'p' then 1 unless sushi == '炙りえんがわ' # TODO: マジックナンバーやめる
+            end
+          end
+        rescue Timeout::Error
+          # 何もしない
+        end
+      end.compact.inject(:+)
+    end
+  end
+  CLI.start(ARGV)
+end
+
+=begin
     desc "many", "Game of continue to eat 'えんがわ' and '炙りえんがわ'."
     def many
       sec = 30
@@ -81,6 +94,4 @@ Start: Press Enter
         puts "Time's UP!（SCORE:#{score}, STOMACH:#{stomach_status}）"
       end
     end
-  end
-  CLI.start(ARGV)
-end
+=end
