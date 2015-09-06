@@ -23,14 +23,14 @@ Or install it yourself as:
 ### example
 ```
 $ engawa_eater only
-  eat only '炙りえんがわ'（e:eat, p:pass）
-  えんがわ
-  p
-  炙りサーモン
-  p
-  炙りエンガワ
-  e
-  ...
+eat only '炙りえんがわ'（e:eat, p:pass）
+えんがわ
+p
+炙りサーモン
+p
+炙りエンガワ
+e
+...
 ```
 Aim a perfect score!
 
@@ -46,16 +46,16 @@ Oters（stomach status:+2）
 --------------------------------------------------
 Start: Press Enter
 
-  炙りえんがわ（SCORE:0, STOMACH:0）
-  e
-  サーモン（SCORE:3, STOMACH:4）
-  p
-  えんがわ（SCORE:3, STOMACH:4）
-  e
-  芽ねぎ（SCORE:4, STOMACH:6）
-  e
-  えんがわ（SCORE:4, STOMACH:6）
-  ...
+炙りえんがわ（SCORE:0, STOMACH:0）
+e
+サーモン（SCORE:3, STOMACH:4）
+p
+えんがわ（SCORE:3, STOMACH:4）
+e
+芽ねぎ（SCORE:4, STOMACH:6）
+e
+えんがわ（SCORE:4, STOMACH:6）
+...
 ```
 Aim high score!
 
