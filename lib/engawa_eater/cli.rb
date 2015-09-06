@@ -6,7 +6,13 @@ module EngawaEater
   class CLI < Thor
     desc "only", "Game of eat only '炙りえんがわ'."
     def only
-      puts "eat only '炙りえんがわ'（e:eat, p:pass）"
+      puts <<EOS
+----------------------------------------
+eat only '炙りえんがわ'（e:eat, p:pass）
+----------------------------------------
+Start: Press Enter
+EOS
+      STDIN.gets
       sushis = ["炙りえんがわ", "えんがわ", "炙りサーモン"]
       score = 0
       10.times do

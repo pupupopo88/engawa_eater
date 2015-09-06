@@ -23,7 +23,11 @@ Or install it yourself as:
 ### example
 ```
 $ engawa_eater only
+----------------------------------------
 eat only '炙りえんがわ'（e:eat, p:pass）
+----------------------------------------
+Start: Press Enter
+
 えんがわ
 p
 炙りサーモン
