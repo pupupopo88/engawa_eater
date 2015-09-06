@@ -14,7 +14,7 @@ module EngawaEater
         Sushi.new(name: 'えんがわ',     score: 1),
         Sushi.new(name: '炙りサーモン', score: 1)
       ]
-      score = run(all_sushi)
+      score = only_run(all_sushi)
       puts "炙りえんがわ #{score.nil? ? 0 : score * 10}%！"
     end
 
@@ -86,7 +86,7 @@ Start: Press Enter
       Array.new(10).map { all_sushi.sample }
     end
 
-    def run(all_sushi)
+    def only_run(all_sushi)
       questions(all_sushi).map do |sushi|
         puts sushi.name
         aburi_engawa_check(sushi)
