@@ -5,12 +5,12 @@ module EngawaEater
   class CLI < Thor
     desc "only", "Game of eat only '炙りえんがわ'."
     def only
-      puts <<EOS
+      puts <<-EOS
 ----------------------------------------
 eat only '炙りえんがわ'（e:eat, p:pass）
 ----------------------------------------
 Start: Press Enter
-EOS
+      EOS
       STDIN.gets
       sushis = ["炙りえんがわ", "えんがわ", "炙りサーモン"]
       score = 0
@@ -37,7 +37,7 @@ EOS
     def many
       sec = 30
       max_stomach_capacity = 20
-      puts <<EOS
+      puts <<-EOS
 --------------------------------------------------
 continue to eat '炙りえんがわ' and 'えんがわ'（e:eat, p:pass）
 Time limit:#{sec}sec, Max stomach capacity:#{max_stomach_capacity}
@@ -47,7 +47,7 @@ Time limit:#{sec}sec, Max stomach capacity:#{max_stomach_capacity}
 Oters（stomach status:+2）
 --------------------------------------------------
 Start: Press Enter
-EOS
+      EOS
       STDIN.gets
       sushis = ["炙りえんがわ", "えんがわ", "芽ねぎ", "炙りほたて", "マグロ", "サーモン"]
       stomach_status = 0
