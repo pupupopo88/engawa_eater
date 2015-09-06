@@ -6,55 +6,33 @@ module EngawaEater
   class CLI < Thor
     desc "only", "Game of eat only '炙りえんがわ'."
     def only
-      only_start_mesasge
-      STDIN.gets
       # NOTE: 寿司は不可算名詞
       all_sushi = [
         Sushi.new(name: '炙りえんがわ', score: 1),
         Sushi.new(name: 'えんがわ',     score: 1),
         Sushi.new(name: '炙りサーモン', score: 1)
       ]
+      only_start_mesasge
+      STDIN.gets
       score = only_run(all_sushi)
       puts "炙りえんがわ #{score.nil? ? 0 : score * 10}%！"
     end
 
     desc "many", "Game of continue to eat 'えんがわ' and '炙りえんがわ'."
     def many
+      all_sushi = [
+        Sushi.new(name: '炙りえんがわ', score: 3, stomach_status: 4),
+        Sushi.new(name: 'えんがわ',     score: 1, stomach_status: 2),
+        Sushi.new(name: '芽ねぎ',       score: 0, stomach_status: -4),
+        Sushi.new(name: '炙りほたて',   score: 0, stomach_status: 2),
+        Sushi.new(name: 'マグロ',       score: 0, stomach_status: 2),
+        Sushi.new(name: 'サーモン',     score: 0, stomach_status: 2),
+      ]
       sec = 30
       max_stomach_capacity = 20
       many_start_mesasge(sec, max_stomach_capacity)
       STDIN.gets
-      sushis = ["炙りえんがわ", "えんがわ", "芽ねぎ", "炙りほたて", "マグロ", "サーモン"]
-      stomach_status = 0
-      score = 0
-      begin
-        timeout(sec) {
-          while stomach_status <= max_stomach_capacity
-            gave_sushi = sushis.sample
-            puts "#{gave_sushi}（SCORE:#{score}, STOMACH:#{stomach_status}）"
-            action = STDIN.gets.chomp!
-            case gave_sushi
-            when "炙りえんがわ"
-              if action == "e"
-                score += 3
-                stomach_status += 4
-              end
-            when "えんがわ"
-              if action == "e"
-                score += 1
-                stomach_status += 2
-              end
-            when "芽ねぎ"
-              stomach_status -= 4 if action == "e"
-            else
-              stomach_status += 2 if action == "e"
-            end
-          end
-          puts "Can’t eat anymore!（SCORE:#{score}, STOMACH:#{stomach_status}）"
-        }
-      rescue
-        puts "Time's UP!（SCORE:#{score}, STOMACH:#{stomach_status}）"
-      end
+      many_run(all_sushi, sec, max_stomach_capacity)
     end
 
     private
@@ -91,6 +69,30 @@ Start: Press Enter
         puts sushi.name
         aburi_engawa_check(sushi)
       end.compact.inject(:+)
+    end
+
+    def many_run(all_sushi, sec, max_stomach_capacity)
+      stomach_status = 0
+      score = 0
+      begin
+        timeout(sec) do
+          while stomach_status <= max_stomach_capacity
+            sushi = all_sushi.sample
+            puts "#{sushi.name}#{display_result(score, stomach_status)}"
+            if STDIN.gets.chomp! == 'e'
+              score += sushi.score
+              stomach_status += sushi.stomach_status
+            end
+          end
+          puts "Can’t eat anymore!#{display_result(score, stomach_status)}"
+        end
+      rescue
+        puts "Time's UP!#{display_result(score, stomach_status)}"
+      end
+    end
+
+    def display_result(score, stomach_status)
+      "（SCORE:#{score}, STOMACH:#{stomach_status}）"
     end
 
     def aburi_engawa_check(sushi)
