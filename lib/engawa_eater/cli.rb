@@ -70,7 +70,7 @@ EOS
               stomach_status += 2 if action == "e"
             end
           end
-          puts "can’t eat anymore!（SCORE:#{score}, STOMACH:#{stomach_status}）"
+          puts "Can’t eat anymore!（SCORE:#{score}, STOMACH:#{stomach_status}）"
         }
       rescue
         puts "Time's UP!（SCORE:#{score}, STOMACH:#{stomach_status}）"
