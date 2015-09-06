@@ -1,5 +1,6 @@
 require "thor"
 require "timeout"
+require_relative 'sushi'
 
 module EngawaEater
   class CLI < Thor
@@ -7,8 +8,14 @@ module EngawaEater
     def only
       only_start_mesasge
       STDIN.gets
-      all_sushi = %w[炙りえんがわ えんがわ 炙りサーモン] # NOTE: 寿司は不可算名詞
-      puts "炙りえんがわ #{run(all_sushi) * 10}%！"
+      # NOTE: 寿司は不可算名詞
+      all_sushi = [
+        Sushi.new(name: '炙りえんがわ', score: 1),
+        Sushi.new(name: 'えんがわ',     score: 1),
+        Sushi.new(name: '炙りサーモン', score: 1)
+      ]
+      score = run(all_sushi)
+      puts "炙りえんがわ #{score.nil? ? 0 : score * 10}%！"
     end
 
     private
@@ -28,18 +35,20 @@ Start: Press Enter
 
     def run(all_sushi)
       questions(all_sushi).map do |sushi|
-        puts sushi
-        begin
-          timeout(1.2) do
-            case STDIN.gets.chomp!
-            when 'e' then 1 if sushi == '炙りえんがわ' # TODO: マジックナンバーやめる
-            when 'p' then 1 unless sushi == '炙りえんがわ' # TODO: マジックナンバーやめる
-            end
-          end
-        rescue Timeout::Error
-          # 何もしない
-        end
+        puts sushi.name
+        aburi_engawa_check(sushi)
       end.compact.inject(:+)
+    end
+
+    def aburi_engawa_check(sushi)
+      timeout(1.2) do
+        case STDIN.gets.chomp!
+        when 'e' then sushi.score if sushi.name == '炙りえんがわ'
+        when 'p' then sushi.score unless sushi.name == '炙りえんがわ'
+        end
+      end
+    rescue Timeout::Error
+      # 何もしない
     end
   end
   CLI.start(ARGV)
