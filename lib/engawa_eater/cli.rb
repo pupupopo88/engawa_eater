@@ -1,4 +1,3 @@
-require "engawa_eater"
 require "thor"
 require "timeout"
 
@@ -83,4 +82,5 @@ EOS
       end
     end
   end
+  CLI.start(ARGV)
 end
