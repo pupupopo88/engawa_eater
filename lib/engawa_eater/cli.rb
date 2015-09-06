@@ -30,14 +30,26 @@ module EngawaEater
 
     desc "many", "Game of continue to eat 'えんがわ' and '炙りえんがわ'."
     def many
-      puts "continue to eat '炙りえんがわ' and 'えんがわ'（e:eat, p:pass）"
+      sec = 30
+      max_stomach_capacity = 20
+      puts <<EOS
+--------------------------------------------------
+continue to eat '炙りえんがわ' and 'えんがわ'（e:eat, p:pass）
+Time limit:#{sec}sec, Max stomach capacity:#{max_stomach_capacity}
+炙りえんがわ（score:+3, stomach status:+4）
+えんがわ（score:+1, stomach status:+2）
+芽ねぎ（stomach status:-4）
+Oters（stomach status:+2）
+--------------------------------------------------
+Start: Press Enter
+EOS
+      STDIN.gets
       sushis = ["炙りえんがわ", "えんがわ", "芽ねぎ", "炙りほたて", "マグロ", "サーモン"]
       stomach_status = 0
       score = 0
-      sec = 30
       begin
         timeout(sec) {
-          while stomach_status <= 20
+          while stomach_status <= max_stomach_capacity
             gave_sushi = sushis.sample
             puts "#{gave_sushi}（SCORE:#{score}, STOMACH:#{stomach_status}）"
             action = STDIN.gets.chomp!

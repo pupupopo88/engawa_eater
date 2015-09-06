@@ -36,7 +36,16 @@ Aim a perfect score!
 
 ```
 $ engawa_eater many
-  Game of continue to eat 'えんがわ' and '炙りえんがわ'.
+--------------------------------------------------
+continue to eat '炙りえんがわ' and 'えんがわ'（e:eat, p:pass）
+Time limit:30sec, Max stomach capacity:20
+炙りえんがわ（score:+3, stomach status:+4）
+えんがわ（score:+1, stomach status:+2）
+芽ねぎ（stomach status:-4）
+Oters（stomach status:+2）
+--------------------------------------------------
+Start: Press Enter
+
   炙りえんがわ（SCORE:0, STOMACH:0）
   e
   サーモン（SCORE:3, STOMACH:4）
