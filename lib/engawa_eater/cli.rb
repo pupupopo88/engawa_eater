@@ -45,7 +45,7 @@ Time limit:#{sec}sec, Max stomach capacity:#{max_stomach_capacity}
 炙りえんがわ（score:+3, stomach status:+4）
 えんがわ（score:+1, stomach status:+2）
 芽ねぎ（stomach status:-4）
-Oters（stomach status:+2）
+Others（stomach status:+2）
 --------------------------------------------------
 Start: Press Enter
 EOS
